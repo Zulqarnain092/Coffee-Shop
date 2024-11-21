@@ -9,7 +9,7 @@ class Database:
     def __init__(self):
         self.menu = pd.DataFrame({
             'item': ['Americano', 'Cappuccino', 'Latte', 'Caramel Macchiato'],
-            'price': [2.50, 3.00, 3.50, 4.00]
+            'price': [7.90, 8.50, 9.00, 10.00]
         })
         self.orders_file = "orders.json"
         self.orders = self.load_orders()
