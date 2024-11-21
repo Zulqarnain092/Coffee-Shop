@@ -1,0 +1,56 @@
+[
+    {
+        "order_id": 1593,
+        "customer": "Zulqarnain",
+        "item": "Americano",
+        "quantity": 1,
+        "total_price": 2.5,
+        "status": "Paid",
+        "date": "2024-11-16 23:12:23"
+    },
+    {
+        "order_id": 9214,
+        "customer": "Zulqarnain",
+        "item": "Americano",
+        "quantity": 1,
+        "total_price": 2.5,
+        "status": "Paid",
+        "date": "2024-11-17 00:33:18"
+    },
+    {
+        "order_id": 1085,
+        "customer": "Zulqarnain",
+        "item": "Latte",
+        "quantity": 1,
+        "total_price": 3.5,
+        "status": "Pending",
+        "date": "2024-11-17 00:42:05"
+    },
+    {
+        "order_id": 1955,
+        "customer": "Zulqarnain",
+        "item": "Americano",
+        "quantity": 1,
+        "total_price": 2.5,
+        "status": "Pending",
+        "date": "2024-11-17 00:45:22"
+    },
+    {
+        "order_id": 9488,
+        "customer": "Zulqarnain",
+        "item": "Americano",
+        "quantity": 1,
+        "total_price": 2.5,
+        "status": "Pending",
+        "date": "2024-11-17 08:17:00"
+    },
+    {
+        "order_id": 8267,
+        "customer": "Zulqarnain",
+        "item": "Americano",
+        "quantity": 1,
+        "total_price": 2.5,
+        "status": "Pending",
+        "date": "2024-11-17 08:27:05"
+    }
+]
