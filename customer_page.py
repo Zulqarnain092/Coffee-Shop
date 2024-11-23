@@ -4,13 +4,20 @@ import pandas as pd
 import random
 import json
 import os
+from dotenv import load_dotenv  # Import dotenv to load environment variables
 from admin_dashboard import admin_dashboard_page
 from shared import db
 from datetime import datetime
 from PIL import Image
 
-# Set the secret key 
-stripe.api_key = 'sk_test_51QCDpgEalrOScNORqcvEdXVQi7Q8cKcEQlF88lh4J0VvWPWcyc5JXr0mLtskbysT9uAXi2ndu3JpMkRIjCnCLhSm007Zvm9e24'
+# Load environment variables from the .env file
+load_dotenv()
+
+# Set the secret key securely from environment variables
+stripe.api_key = os.getenv('STRIPE_SECRET_KEY')
+
+if not stripe.api_key:
+    st.error("Stripe secret key is not set. Please check your .env file.")
 
 # Stripe payment session creation
 def create_checkout_session(customer_name, total_price, order_id, coupon_code=None):
@@ -44,6 +51,7 @@ def create_checkout_session(customer_name, total_price, order_id, coupon_code=No
     except Exception as e:
         st.error(f"Error creating payment session: {e}")
         return None
+
 
 def customer_order_process():
     st.title("Coffee Shop - Customer Order")
