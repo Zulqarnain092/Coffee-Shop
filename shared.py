@@ -111,7 +111,7 @@ class Database:
 # Mock database
 users = {
     "admin": {"password": "admin123", "role": "Admin"},
-    "cust": {"password": "cust123", "role": "Customer"}
+    "zulka165": {"password": "zul092nain", "role": "Customer"}
 }
 
 def authenticate_user(username, password, role):
