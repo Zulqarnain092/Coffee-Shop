@@ -172,9 +172,14 @@ def order_history_page():
     
     # Convert order data to DataFrame for display
     order_data = pd.DataFrame(db.orders)
+
+    # Exclude the 'customer' column
+    if 'customer' in order_data.columns:
+        order_data = order_data.drop(columns=['customer'])
     
     # Display the order history
     st.dataframe(order_data)
+
 
 
 
