@@ -2,3 +2,4 @@ streamlit
 pandas
 stripe
 pillow
+python-dotenv
