@@ -1,50 +1,42 @@
 [
     {
-        "order_id": 1593,        
+        "order_id": 3329,
+        "customer": "Zulqarnain",
         "item": "Americano",
         "quantity": 1,
-        "total_price": 2.5,
-        "status": "Paid",
-        "date": "2024-11-16 23:12:23"
+        "total_price": 7.9,
+        "status": "Ready",
+        "date": "2024-11-21 23:47:55",
+        "notification_sent": false
     },
     {
-        "order_id": 9214,
-        "item": "Americano",
+        "order_id": 9071,
+        "customer": "Zulqarnain",
+        "item": "Caramel Macchiato",
         "quantity": 1,
-        "total_price": 2.5,
-        "status": "Paid",
-        "date": "2024-11-17 00:33:18"
+        "total_price": 10.0,
+        "status": "Ready",
+        "date": "2024-11-22 12:33:09",
+        "notification_sent": false
     },
     {
-        "order_id": 1085,
-        "item": "Latte",
-        "quantity": 1,
-        "total_price": 3.5,
-        "status": "Pending",
-        "date": "2024-11-17 00:42:05"
+        "order_id": 3184,
+        "customer": "cust",
+        "item": "Caramel Macchiato",
+        "quantity": 2,
+        "total_price": 20.0,
+        "status": "Ready",
+        "date": "2024-11-22 14:14:08",
+        "notification_sent": true
     },
     {
-        "order_id": 1955,
-        "item": "Americano",
-        "quantity": 1,
-        "total_price": 2.5,
-        "status": "Pending",
-        "date": "2024-11-17 00:45:22"
-    },
-    {
-        "order_id": 9488,
-        "item": "Americano",
-        "quantity": 1,
-        "total_price": 2.5,
-        "status": "Pending",
-        "date": "2024-11-17 08:17:00"
-    },
-    {
-        "order_id": 8267,
-        "item": "Americano",
-        "quantity": 1,
-        "total_price": 2.5,
-        "status": "Pending",
-        "date": "2024-11-17 08:27:05"
+        "order_id": 8091,
+        "customer": "zulka728",
+        "item": "Caramel Macchiato",
+        "quantity": 2,
+        "total_price": 20.0,
+        "status": "Ready",
+        "date": "2024-11-22 14:32:36",
+        "notification_sent": true
     }
 ]
