@@ -45,7 +45,8 @@ def create_checkout_session(customer_name, total_price, order_id, coupon_code=No
         )
     except Exception as e:
         # Handle exceptions
-        print(f"Error creating checkout session: {e}")
+        st.error(f"Error creating payment session: {e}")
+        return None
 
 
 def customer_order_process():
