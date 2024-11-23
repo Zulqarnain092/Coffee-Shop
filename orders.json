@@ -1,7 +1,6 @@
 [
     {
-        "order_id": 1593,
-        "customer": "Zulqarnain",
+        "order_id": 1593,        
         "item": "Americano",
         "quantity": 1,
         "total_price": 2.5,
@@ -10,7 +9,6 @@
     },
     {
         "order_id": 9214,
-        "customer": "Zulqarnain",
         "item": "Americano",
         "quantity": 1,
         "total_price": 2.5,
@@ -19,7 +17,6 @@
     },
     {
         "order_id": 1085,
-        "customer": "Zulqarnain",
         "item": "Latte",
         "quantity": 1,
         "total_price": 3.5,
@@ -28,7 +25,6 @@
     },
     {
         "order_id": 1955,
-        "customer": "Zulqarnain",
         "item": "Americano",
         "quantity": 1,
         "total_price": 2.5,
@@ -37,7 +33,6 @@
     },
     {
         "order_id": 9488,
-        "customer": "Zulqarnain",
         "item": "Americano",
         "quantity": 1,
         "total_price": 2.5,
@@ -46,7 +41,6 @@
     },
     {
         "order_id": 8267,
-        "customer": "Zulqarnain",
         "item": "Americano",
         "quantity": 1,
         "total_price": 2.5,
