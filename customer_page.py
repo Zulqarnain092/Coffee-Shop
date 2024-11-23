@@ -43,10 +43,13 @@ def create_checkout_session(customer_name, total_price, order_id, coupon_code=No
             success_url=f'https://koopi-co.streamlit.app/?success=true&order_id={order_id}',
             cancel_url=f'https://koopi-co.streamlit.app/?cancel=true',
         )
+        
+        return session.url  # Ensure this returns the URL to proceed to payment
+    
     except Exception as e:
-        # Handle exceptions
         st.error(f"Error creating payment session: {e}")
         return None
+
 
 
 def customer_order_process():
@@ -119,11 +122,13 @@ def customer_order_process():
             db.orders.append(order_data)
             db.save_orders()  # Save the order to the JSON file
             
-            # Create a Stripe Checkout session
+            # Create a Stripe Checkout session and get the payment URL
             payment_url = create_checkout_session(customer_name, total_price, order_id, coupon_code)
+            
             if payment_url:
                 st.markdown(f"[Click here to complete your payment]({payment_url})")
-
+            else:
+                st.error("Failed to create payment session.")
 
 
 
