@@ -129,4 +129,5 @@ def register_user(username, password, role):
     users[username] = {"password": password, "role": role}
     return True
 
+
 db = Database()
