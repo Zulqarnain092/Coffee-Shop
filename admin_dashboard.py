@@ -1,6 +1,6 @@
 import pandas as pd
 import streamlit as st
-from shared import db  # Assumes shared.py contains the database logic
+from shared import db 
 
 def admin_dashboard_page():
     st.title("Admin Dashboard")
@@ -22,6 +22,27 @@ def admin_dashboard_page():
     if missing_fields:
         st.error(f"Orders data is missing required fields: {', '.join(missing_fields)}.")
         return
+
+    # **Order Status Update Section**
+    st.subheader("Mark Orders as Ready")
+
+    # Create a list of order IDs to select from
+    order_options = [order['order_id'] for order in db.orders if order['status'] != 'Ready']
+    selected_order_id = st.selectbox("Select Order ID to mark as Ready:", order_options)
+
+    if st.button("Mark as Ready"):
+        order_found = False
+        for order in db.orders:
+            if order['order_id'] == selected_order_id:
+                order['status'] = 'Ready'
+                order['notification_sent'] = False
+                order_found = True
+                db.save_orders()
+                st.success(f"Order ID {selected_order_id} marked as Ready.")
+                break
+        if not order_found:
+            st.error(f"Order ID {selected_order_id} not found.")
+
 
     # Ensure date column is properly formatted
     try:
@@ -135,6 +156,7 @@ def admin_dashboard_page():
         st.write(f"**Worst Seller**: {worst_seller['item']} ({worst_seller['total_sold']} units sold)")
     else:
         st.info("No sales data available to identify best or worst sellers.")
+
 
 # Coupon Management
 def admin_coupon_page():
