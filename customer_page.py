@@ -130,7 +130,6 @@ def order_notifications_page(customer_name):
     customer_orders = [order for order in db.orders if order['customer'] == customer_name]
     
     # Debugging step
-    st.write(f"Loaded orders: {len(db.orders)}")
     st.write(f"Customer orders: {len(customer_orders)}")
 
     if not customer_orders:
