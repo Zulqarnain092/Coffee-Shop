@@ -40,13 +40,12 @@ def create_checkout_session(customer_name, total_price, order_id, coupon_code=No
                 'quantity': 1,
             }],
             mode='payment',
-            success_url=f'http://localhost:8502/?success=true&order_id={order_id}',
-            cancel_url=f'http://localhost:8502/?cancel=true',
+            success_url=f'https://koopi-co.streamlit.app/?success=true&order_id={order_id}',
+            cancel_url=f'https://koopi-co.streamlit.app/?cancel=true',
         )
-        return session.url
     except Exception as e:
-        st.error(f"Error creating payment session: {e}")
-        return None
+        # Handle exceptions
+        print(f"Error creating checkout session: {e}")
 
 
 def customer_order_process():
