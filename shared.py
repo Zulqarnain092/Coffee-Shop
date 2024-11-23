@@ -28,7 +28,7 @@ class Database:
                     validated_orders = []
                     for order in orders:
                         # Ensure all required keys are in the order
-                        if all(key in order for key in ['order_id', 'item', 'quantity', 'total_price', 'status', 'date']):
+                        if all(key in order for key in ['order_id', 'customer', 'item', 'quantity', 'total_price', 'status', 'date', 'notification_sent']):
                             validated_orders.append(order)
                         else:
                             print(f"Invalid order detected: {order}")
@@ -37,6 +37,7 @@ class Database:
                 st.error("Error loading orders file.")
                 return []
         return []
+
 
     def load_feedback(self):
         if os.path.exists(self.feedback_file):
@@ -111,7 +112,7 @@ class Database:
 # Mock database
 users = {
     "admin": {"password": "admin123", "role": "Admin"},
-    "zulka165": {"password": "zul092nain", "role": "Customer"}
+    "cust": {"password": "cust123", "role": "Customer"}
 }
 
 def authenticate_user(username, password, role):
@@ -127,6 +128,5 @@ def register_user(username, password, role):
         return False  # Username already exists
     users[username] = {"password": password, "role": role}
     return True
-
 
 db = Database()
