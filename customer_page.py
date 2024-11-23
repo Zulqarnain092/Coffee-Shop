@@ -3,21 +3,17 @@ import stripe
 import pandas as pd
 import random
 import json
-import os
-from dotenv import load_dotenv  # Import dotenv to load environment variables
 from admin_dashboard import admin_dashboard_page
 from shared import db
 from datetime import datetime
 from PIL import Image
 
-# Load environment variables from the .env file
-load_dotenv()
+# Access the Stripe secret key from Streamlit's secrets
+stripe.api_key = st.secrets["stripe"]["STRIPE_SECRET_KEY"]
 
-# Set the secret key securely from environment variables
-stripe.api_key = os.getenv('STRIPE_SECRET_KEY')
-
+# Check if the Stripe API key is available
 if not stripe.api_key:
-    st.error("Stripe secret key is not set. Please check your .env file.")
+    st.error("Stripe secret key is not set. Please check your Streamlit secrets.")
 
 # Stripe payment session creation
 def create_checkout_session(customer_name, total_price, order_id, coupon_code=None):
