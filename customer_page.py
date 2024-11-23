@@ -28,7 +28,7 @@ def create_checkout_session(customer_name, total_price, order_id, coupon_code=No
             payment_method_types=['card'],
             line_items=[{
                 'price_data': {
-                    'currency': 'usd',  # Change if necessary
+                    'currency': 'myr',  # Change if necessary
                     'product_data': {
                         'name': f"Coffee Order for {customer_name}"
                     },
@@ -45,7 +45,6 @@ def create_checkout_session(customer_name, total_price, order_id, coupon_code=No
         st.error(f"Error creating payment session: {e}")
         return None
 
-# Customer order process
 def customer_order_process():
     st.title("Coffee Shop - Customer Order")
     st.subheader("Menu")
@@ -79,10 +78,16 @@ def customer_order_process():
             else:
                 st.write(f"**{item}** - RM{price:.2f}")
     
-    customer_name = st.text_input("Enter your name:")
+    if "username" in st.session_state:
+        customer_name = st.session_state["username"]
+    else:
+        st.error("You need to sign in first.")
+        return
+    
     selected_item = st.selectbox("Choose your coffee:", db.menu['item'])
     quantity = st.number_input("Enter quantity:", min_value=1, step=1)
     coupon_code = st.text_input("Enter coupon code (if any):")
+
     
     if customer_name and selected_item:
         price = db.menu[db.menu['item'] == selected_item]['price'].values[0]
@@ -114,6 +119,38 @@ def customer_order_process():
             payment_url = create_checkout_session(customer_name, total_price, order_id, coupon_code)
             if payment_url:
                 st.markdown(f"[Click here to complete your payment]({payment_url})")
+
+
+
+
+def order_notifications_page(customer_name):
+    st.title("Order Notifications")
+    
+    db.load_orders()
+    customer_orders = [order for order in db.orders if order['customer'] == customer_name]
+    
+    # Debugging step
+    st.write(f"Loaded orders: {len(db.orders)}")
+    st.write(f"Customer orders: {len(customer_orders)}")
+
+    if not customer_orders:
+        st.write("No orders found.")
+        return
+
+    ready_orders = [order for order in customer_orders if order['status'] == 'Ready' and not order['notification_sent']]
+    
+    # Debugging step
+    st.write(f"Ready orders: {len(ready_orders)}")
+
+    if ready_orders:
+        for order in ready_orders:
+            st.success(f"Your order #{order['order_id']} is Ready! 🎉")
+            order['notification_sent'] = True
+        db.save_orders()
+    else:
+        st.write("No notifications at the moment.")
+
+
 
 
 
@@ -173,15 +210,27 @@ def order_history_page():
     # Convert order data to DataFrame for display
     order_data = pd.DataFrame(db.orders)
 
+    # Get the current logged-in username
+    username = st.session_state.get("username", None)
+    
+    if username:
+        # Filter orders by username
+        order_data = order_data[order_data["customer"] == username]
+    else:
+        st.error("No username found in session. Please log in again.")
+        return
+
+    # Check if there are orders for the user
+    if order_data.empty:
+        st.write("You have no past orders.")
+        return
+
     # Exclude the 'customer' column
     if 'customer' in order_data.columns:
         order_data = order_data.drop(columns=['customer'])
     
-    # Display the order history
+    # Display the filtered order history
     st.dataframe(order_data)
-
-
-
 
 
 
