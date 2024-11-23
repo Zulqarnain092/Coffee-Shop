@@ -28,7 +28,7 @@ class Database:
                     validated_orders = []
                     for order in orders:
                         # Ensure all required keys are in the order
-                        if all(key in order for key in ['order_id', 'customer', 'item', 'quantity', 'total_price', 'status', 'date']):
+                        if all(key in order for key in ['order_id', 'item', 'quantity', 'total_price', 'status', 'date']):
                             validated_orders.append(order)
                         else:
                             print(f"Invalid order detected: {order}")
